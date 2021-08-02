@@ -1,0 +1,13 @@
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input {
+    border: 2px lightskyblue solid;
+    display: block;
+    margin: 1.5em;
+    color: skyblue; 
+}
