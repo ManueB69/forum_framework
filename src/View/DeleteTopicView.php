@@ -1,5 +1,5 @@
 <?php
-// TODO
+
 namespace App\View;
 
 use App\Model\Topic;
@@ -15,7 +15,7 @@ class DeleteTopicView extends AbstractView
      * objet Topic à supprimer
      */
     protected Topic $topic;
-        /**
+    /**
      * Tableau d'objets de classe Message correspondants au topic fourni par le client
      */
     protected array $messages;

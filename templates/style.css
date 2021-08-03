@@ -49,12 +49,12 @@ input, textarea {
     margin: 0.5em 0 0.5em 0.5em;
 }
 
-.btnx:nth-child(2) {
+.btnx:nth-child(1) {
     flex:1 1 70%;
     text-align: left;
     font-size: 1.4em;
     padding-left: 0;
 }
-.btnx:nth-child(4), .btnx:nth-child(3) {
+.btnx:nth-child(2), .btnx:nth-child(3) {
     flex: 0 0 15% ;
 }

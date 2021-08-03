@@ -17,16 +17,16 @@ use App\Model\Topic;
     <div id="topic_list">
         <?php foreach($topics as $topic): ?>
             <div id="topic_line">
-                <form method="post" action="show_topic"  classe="btnx">
+                <form method="post" action="/<?= $topic->getId() ?>/show" classe="btnx">
                     <button type="submit" class="btn btn-link btnx" name="id_topic" value="<?= $topic->getId() ?>"><?= $topic->getTitle() ?></button>
                 </form>
-                <form method="post" action="edit_topic"  classe="btnx">
-                    <input type="hidden" name="id_topic" value="<?= $topic->getId() ?>" />
-                    <button type="submit" class="btn btn-primary">Modifier</button>
+                <form method="post" action="/<?= $topic->getId() ?>/edit" classe="btnx">
+                    <input type="hidden" classe="btnx" name="id_topic" value="<?= $topic->getId() ?>" />
+                    <button type="submit" class="btn btn-primary btnx">Modifier</button>
                 </form>
-                <form method="post" action="/<?= $topic->getId() ?>" classe="btnx">
-                    <input type="hidden" name="id_topic" value="<?= $topic->getId() ?>" />
-                    <button type="submit" class="btn btn-danger" name="delete_topic" value="1">Supprimer</button>
+                <form method="post" action="/<?= $topic->getId() ?>/delete" classe="btnx">
+                    <input type="hidden" classe="btnx" name="id_topic" value="<?= $topic->getId() ?>" />
+                    <button type="submit" class="btn btn-danger btnx">Supprimer</button>
                 </form>
             </div>
         <?php endforeach; ?>

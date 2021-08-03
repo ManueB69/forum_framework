@@ -17,10 +17,15 @@ use Cda0521Framework\Interfaces\ControllerInterface;
 class TopicController implements ControllerInterface
 {
     /**
-     * Identifiant en base de données du topic à passer à la vue
+     * Objet Topic à passer à la vue
      * @var int
      */
     private Topic $topic;
+        /**
+     * Action à réaliser avec le topic
+     * @var string
+     */
+    private string $action;
     /**
      * L'ensemble des messages à passer à la vue
      * @var array[Message]
@@ -32,7 +37,7 @@ class TopicController implements ControllerInterface
      *
      * @param integer $id_topic Identifiant en base de données du sujet à passer à la vue
      */
-    public function __construct(int $id_topic)
+    public function __construct(int $id_topic, string $action)
     {
         // Récupère le sujet demandé par le client
         $topic = Topic::findById($id_topic);
@@ -43,6 +48,7 @@ class TopicController implements ControllerInterface
         }
         
         $this->topic = $topic;
+        $this->action = $action;
         
         $messages = Message::findWhere('id_topic',$id_topic);
         $this->messages=$messages;
@@ -55,16 +61,18 @@ class TopicController implements ControllerInterface
      * @return AbstractView
      */
     public function invoke(): AbstractView
-    {      
-        if(isset($_POST['delete_topic'])) {
-            return new DeleteTopicView($this->topic, $this->messages);
-        } elseif (isset($_POST['edit_topic'])) {
-            return new EditTopicView($this->topic);
-        } else {
-            return  new TopicView($this->messages);
-        }
+    {   
+        $topic=$this->topic;
+        $messages=$this->messages;
         
-        
+        switch($this->action) {
+            case 'delete':
+                return new DeleteTopicView( $topic,$messages );
+            case 'edit':
+                return new EditTopicView($topic);
+            case 'show':
+                return  new TopicView($messages);
+        }       
 
     }
 }

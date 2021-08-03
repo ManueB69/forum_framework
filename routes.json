@@ -19,8 +19,8 @@
     },
     {
         "method": "POST",
-        "uri": "/[i:id_topic]",
+        "uri": "/[i:id_topic]/[a:action]",
         "controller": "TopicController",
-        "name": "delete topic"
+        "name": "topic"
     }
 ]
