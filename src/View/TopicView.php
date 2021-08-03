@@ -2,6 +2,7 @@
 
 namespace App\View;
 
+use App\Model\Topic;
 use App\Model\Message;
 use Cda0521Framework\Html\AbstractView;
 
@@ -11,7 +12,11 @@ use Cda0521Framework\Html\AbstractView;
 class TopicView extends AbstractView
 {
     /**
-     * Tableau d'objets de classe Message correspondants au topic fourni par le client
+     * objet Topic à afficher
+     */
+    protected Topic $topic;
+    /**
+     * Tableau d'objets de classe Message correspondants au topic
      */
     protected array $messages;
     
@@ -20,9 +25,10 @@ class TopicView extends AbstractView
      *
      * @param array[Message] $messages
      */
-    public function __construct($messages)
+    public function __construct($topic,$messages)
     {
         parent::__construct('Sujet');
+        $this->topic = $topic;
         $this->messages = $messages;
     }
 
@@ -34,6 +40,7 @@ class TopicView extends AbstractView
      */
     protected function renderBody(): void
     {
+        $topic = $this->topic;
         $messages = $this->messages;
         // Affiche le contenu de la balise body
         include './templates/topic.php';

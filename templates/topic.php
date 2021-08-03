@@ -2,23 +2,28 @@
 <?php
 
 use App\Model\Topic;
-$topic = $messages[0]->getTopic();
-$topic_user = $messages[0]->getUser()->getUserName();
+use App\Model\User;
+use App\Model\Message;
+
+$user=$messages[0]->getUser();
+$topicUser = $user[0]->getUserName();
 
 ?>
 
 
 <div class="container">
     <div id="topic">
-        <h1> <?= $topic->getTile() ?> </h1>
-        <p> <?= 'Posté le ' . $topic->getDate()->format('d/m/Y') . ' à ' . $topic->getDate()->format('H:i') . 'par ' .$topic_user ?> </p>
+        <h1> <?= $topic->getTitle() ?> </h1>
+        <p> <?= 'Posté le ' . $topic->getDate()->format('d/m/Y') . ' à ' . $topic->getDate()->format('H:i') . ' par ' . $topicUser ?> </p>
     </div>
     <div id="message_list">
-        <?php foreach($messages as $message): ?>
-        <div id="message_line">
-            <h2><?= 'Par ' . $message->getUser()->getUserName . ', le ' . $message->getDate()->format('d/m/Y') . ' à ' . $message->getDate()->format('H:i') ?></h2>
-            <p> <?= $message->getText() ?> </p>
-        </div>
+        <?php foreach($messages as $message): 
+            $users= $message->getUser();
+            $user= $users[0] ?>
+            <div id="message_line">
+                <h2><?= 'Par ' . $user->getUserName() . ', le ' . $message->getDate()->format('d/m/Y') . ' à ' . $message->getDate()->format('H:i') ?></h2>
+                <p> <?= $message->getText() ?> </p>
+            </div>
         <?php endforeach; ?>
     </div>
     <div id="new_message">

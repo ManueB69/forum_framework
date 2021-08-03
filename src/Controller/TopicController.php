@@ -71,7 +71,7 @@ class TopicController implements ControllerInterface
             case 'edit':
                 return new EditTopicView($topic);
             case 'show':
-                return  new TopicView($messages);
+                return  new TopicView($topic, $messages);
         }       
 
     }
