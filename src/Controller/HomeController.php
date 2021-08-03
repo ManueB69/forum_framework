@@ -20,6 +20,7 @@ class HomeController implements ControllerInterface
      */
     public function invoke(): AbstractView
     {
+        // Récupère l'ensemble des topics dans la base de données
         $topics = Topic::findAll();
         return new HomeView($topics);
     }

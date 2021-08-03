@@ -7,14 +7,20 @@
     },
     {
         "method": "GET",
-        "uri": "/play/[i:id]",
-        "controller": "PlayController",
-        "name": "play"
+        "uri": "/user/[i:user]",
+        "controller": "UserController",
+        "name": "user"
+    },
+    {
+        "method": "GET",
+        "uri": "/signin/[i:user]",
+        "controller": "SignInController",
+        "name": "signin"
     },
     {
         "method": "POST",
-        "uri": "/play/[i:id]",
-        "controller": "ProcessAnswerController",
-        "name": "process_answer"
+        "uri": "/[i:id_topic]",
+        "controller": "TopicController",
+        "name": "delete topic"
     }
 ]

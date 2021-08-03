@@ -15,15 +15,20 @@ use App\Model\Topic;
         </form>
     </div>
     <div id="topic_list">
-        <form method="post" id="form_list">
-            <?php foreach($topics as $topic): ?>
+        <?php foreach($topics as $topic): ?>
             <div id="topic_line">
-                <input type="hidden" name="id" classe="btnx" value="<?= $topic->getId() ?>" />
-                <button class="btn btn-link btnx" name="title"><?= $topic->getTitle() ?></button>
-                <button type="submit" class="btn btn-primary btnx">Modifier</button>
-                <button type="submit" class="btn btn-danger btnx">Supprimer</button>
+                <form method="post" action="show_topic"  classe="btnx">
+                    <button type="submit" class="btn btn-link btnx" name="id_topic" value="<?= $topic->getId() ?>"><?= $topic->getTitle() ?></button>
+                </form>
+                <form method="post" action="edit_topic"  classe="btnx">
+                    <input type="hidden" name="id_topic" value="<?= $topic->getId() ?>" />
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </form>
+                <form method="post" action="/<?= $topic->getId() ?>" classe="btnx">
+                    <input type="hidden" name="id_topic" value="<?= $topic->getId() ?>" />
+                    <button type="submit" class="btn btn-danger" name="delete_topic" value="1">Supprimer</button>
+                </form>
             </div>
-            <?php endforeach; ?>
-        </form>
+        <?php endforeach; ?>
     </div>
 </div>

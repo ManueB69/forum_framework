@@ -9,3 +9,4 @@
 <!------ Include the above in your HEAD tag ---------->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" />
 
+<?php include __DIR__.'/header.php' ?>

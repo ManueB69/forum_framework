@@ -2,7 +2,11 @@
 
 namespace App\Model;
 
+use App\Model\User;
 use Cda0521Framework\Database\AbstractModel;
+use Cda0521Framework\Database\Sql\Table;
+use Cda0521Framework\Database\Sql\Column;
+use Cda0521Framework\Database\Sql\SqlDatabaseHandler;
 
 #[Table('message')]
 class Message extends AbstractModel
@@ -23,19 +27,19 @@ class Message extends AbstractModel
      * @var \Datetime
      */
     #[Column('mess_date')]
-    protected \Datetime $date;
+    protected ?\Datetime $date;
     /**
      * Identifiant en base de données de l'utilisateur
      * @var int
      */
     #[Column('id_user')]
-    protected int $user;
+    protected ?int $user;
         /**
      * Identifiant en base de données du sujet
      * @var int
      */
     #[Column('id_topic')]
-    protected int $topic;
+    protected ?int $topic;
     
     /**
      * Crée un nouveau message
@@ -47,19 +51,25 @@ class Message extends AbstractModel
      * @param integer|null $topic Identifiant en base de données du sujet
      * @return void
      */
-    public function __contruct(
+    public function __construct(
         ?int $id,
         string $text = '',
-        ?string $date,
+        ?string $date = null,
         ?int $user = null,
         ?int $topic = null
     )
     {
         $this->id = $id;
         $this->text = $text;
-        $this->date = $date;
         $this->user = $user;
         $this->topic = $topic;
+        
+        if (is_null($date)) {
+            $this->date = new \DateTime();
+        } else {
+            $this->date = new \DateTime($date);
+        }
+
     }
     
     /**
@@ -93,24 +103,25 @@ class Message extends AbstractModel
     }
     
     /**
-     * Get identifiant en base de données de l'utilisateur
+     * Get objet User de l'utilisateur
      *
-     * @return  int
+     * @return User
      */ 
     public function getUser()
     {
-        return $this->user;
+        return User::findWhere('id',$this->user);
     }
     
     /**
      * Get identifiant en base de données du sujet
      *
-     * @return  int
+     * @return Topic
      */ 
     public function getTopic()
     {
-        return $this->topic;
+        return Topic::findWhere('id',$this->topic);
     }
+
 }
 
 
