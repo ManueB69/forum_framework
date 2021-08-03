@@ -10,9 +10,17 @@ use Cda0521Framework\Html\AbstractView;
  */
 class HomeView extends AbstractView
 {
+    /**
+     * Tableau d'objet de classe Topic
+     */
     protected array $topics;
     
-    public function __construct(array $topics)
+    /**
+     * Crée une vue utilisant l'ensemble des objets Topic (miroir de la BDD) 
+     *
+     * @param array[Topic] $topics
+     */
+    public function __construct($topics)
     {
         parent::__construct('Accueil');
         $this->topics = $topics;

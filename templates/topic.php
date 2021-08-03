@@ -1,4 +1,4 @@
-<!-- home -->
+<!-- topic -->
 <?php
 
 use App\Model\Topic;
@@ -7,12 +7,9 @@ use App\Model\Topic;
 
 
 <div class="container">
-    <div id="new_topic">
-        <form method="post">
-            <input type="text" name="title" placeholder="Titre" />
-            <textarea rows="3" name="mess_text" placeholder="Message" ></textarea>
-            <button type="submit" class="btn btn-primary">Ajouter un nouveau sujet</button>
-        </form>
+    <div>
+        <h1> <?= $topic->getTile() ?> </h1>
+        <p> <?= 'Posté le ' . $topic->getDate() . ' à ' . $topic->getDate() . 'par ' .$messages[0]->get ?> </p>
     </div>
     <div id="topic_list">
         <form method="post" id="form_list">
@@ -24,6 +21,12 @@ use App\Model\Topic;
                 <button type="submit" class="btn btn-danger btnx">Supprimer</button>
             </div>
             <?php endforeach; ?>
+        </form>
+    </div>
+    <div id="new_message">
+        <form method="post">
+            <textarea rows="3" name="mess_text" placeholder="Message" ></textarea>
+            <button type="submit" class="btn btn-primary">Répondre au sujet</button>
         </form>
     </div>
 </div>

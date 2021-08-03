@@ -3,6 +3,9 @@
 namespace App\Model;
 
 use Cda0521Framework\Database\AbstractModel;
+use Cda0521Framework\Database\Sql\Table;
+use Cda0521Framework\Database\Sql\Column;
+use Cda0521Framework\Database\Sql\SqlDatabaseHandler;
 
 #[Table('topic')]
 class Topic extends AbstractModel
@@ -20,21 +23,20 @@ class Topic extends AbstractModel
     protected string $title;
     /**
      * Date de création du sujet
-     * @var \Datetime
+    * @var \Datetime
      */
     #[Column('topic_date')]
-    protected \Datetime $date;
+    protected ?\Datetime $date;
     
     /**
      * Crée un nouveau sujet
      *
-     * @param integer|null $id
-     * @param string $title
-     * @param string|null $date
-     * @return void
+     * @param integer|null $id Identifiant en base de données
+     * @param string $title Titre du sujet
+     * @param string|null $date Date de création du sujet
      */
-    public function __contruct(
-        ?int $id,
+    public function __construct(
+        ?int $id = null,
         string $title = '',
         ?string $date = null
     )
@@ -64,9 +66,20 @@ class Topic extends AbstractModel
      *
      * @return  string
      */ 
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
+    }
+    
+        /**
+     * Set Titre du sujet
+     *
+     * @return  string
+     */ 
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+        return $this;
     }
     
     /**
@@ -78,6 +91,7 @@ class Topic extends AbstractModel
     {
         return $this->date;
     }
+
 }
 
 ?>
