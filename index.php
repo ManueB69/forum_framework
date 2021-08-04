@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 use Cda0521Framework\Application;
 

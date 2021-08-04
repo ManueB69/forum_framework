@@ -1,4 +1,5 @@
 <!-- header - nav bar -->
+
 <header>
     <nav class="nav">
         <ul>
@@ -19,7 +20,7 @@
                 <a class="nav-link" href="/user/">Modifier mon compte</a>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="/">Se dconnecter</a>
+                 <a class="nav-link" href="/">Se déconnecter</a>
             </li>
 
             <?php endif; ?>

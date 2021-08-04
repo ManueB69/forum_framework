@@ -7,8 +7,28 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 60%;
+    width: 70%;
+    padding-left: 0;
     margin: auto;
+}
+
+nav li:first-child a {
+    padding-left:0;
+}
+
+nav li:last-child a {
+    padding-right:0;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    margin: auto;
+    margin-bottom:3em;
+    width: 70%;
+    padding: 0;
 }
 
 input, textarea {
@@ -17,12 +37,6 @@ input, textarea {
     display: block;
     color: #007bff ; 
     width: 100%;
-}
-
-#new_topic {
-    margin: auto;
-    margin-bottom:3em;
-    width: 70%;
 }
 
 #new_topic .btn {
@@ -36,25 +50,17 @@ input, textarea {
     width: 70%;
 }
 
-#form_list {
-    display: flex;
-    flex-direction: column;
+tr{
+    width: 100%;
+}
+tr th:nth-child(1) {
+    width: 70%;
 }
 
-#topic_line {
-    display: flex;
-}
+tr th:nth-child(2),th:nth-child(3) {
+    width: 15%
+} 
 
-#topic_list .btn {
-    margin: 0.5em 0 0.5em 0.5em;
-}
-
-.btnx:nth-child(1) {
-    flex:1 1 70%;
-    text-align: left;
-    font-size: 1.4em;
-    padding-left: 0;
-}
-.btnx:nth-child(2), .btnx:nth-child(3) {
-    flex: 0 0 15% ;
+.message_line {
+    border: solid 1px #007bff ;
 }
