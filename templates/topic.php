@@ -25,7 +25,7 @@ $topicUser = $user[0]->getUserName();
             </div>
     <?php endforeach; ?>
     <div id="new_message">
-        <form method="post">
+        <form method="post" action="/<?= $topic->getId() ?>">
             <textarea rows="3" name="mess_text" placeholder="Message" ></textarea>
             <button type="submit" class="btn btn-primary">Répondre au sujet</button>
         </form>

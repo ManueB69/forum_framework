@@ -20,13 +20,8 @@ use Cda0521Framework\Interfaces\ControllerInterface;
 class TopicController implements ControllerInterface
 {
     /**
-     * Objet User utilisateur connecté
-     * @var int
-     */
-    private User $user;
-    /**
      * Objet Topic à passer à la vue
-     * @var int
+     * @var Topic
      */
     private Topic $topic;
         /**
@@ -46,16 +41,9 @@ class TopicController implements ControllerInterface
      * @param integer $id_user Identifiant en base de données de l'utilisateur connecté
      * @param integer $id_topic Identifiant en base de données du sujet à passer à la vue
      */
-    public function __construct(int $id_user, int $id_topic, string $action)
+    public function __construct(int $id_topic, string $action)
     {
-        // Récupère l'utilisateur
-        $user = User::findById($id_user);
-        // Si l'utilisateur' n'existe pas, renvoie à la page 404
-        if (is_null($user)) {
-            throw new NotFoundException('User #' . $id_user . ' does not exist.');
-        }        
-        $this->user = $user;
-                
+    
         // Récupère le sujet demandé par le client
         $topic = Topic::findById($id_topic);
         // Si le sujet n'existe pas, renvoie à la page 404
@@ -78,7 +66,6 @@ class TopicController implements ControllerInterface
      */
     public function invoke(): HttpResponse
     {   
-        $user=$this->user;
         $topic=$this->topic;
         $messages=$this->messages;
         
@@ -99,16 +86,8 @@ class TopicController implements ControllerInterface
 
             case 'edit':
                 return new EditTopicView($topic);
+                
             case 'show':
-                if(isset($_POST['title'])) {
-                    $topic->setTitle($_POST['title']);
-                    $topic->save();
-                }
-                if(isset($_POST['mess_text'])) {
-                    $message=new Message (null, $_POST['mess_text'], null, $user->getId(), $topic->getId());
-                    $message->save();
-                    $messages = Message::findWhere('id_topic',$topic->getId());
-                }
                 return  new TopicView($topic, $messages);
         }       
 

@@ -1,13 +1,13 @@
 [
     {
-        "method": "GET, POST",
+        "method": "GET",
         "uri": "/",
         "controller": "HomeController",
         "name": "home"
     },
     {
         "method": "POST",
-        "uri": "/[i:id_user]",
+        "uri": "/",
         "controller": "NewTopicController",
         "name": "new topic"
     },
@@ -18,15 +18,39 @@
         "name": "edit user"
     },
     {
+        "method": "POST",
+        "uri": "/user",
+        "controller": "UpdateUserController",
+        "name": "update user"
+    },
+    {
+        "method": "POST",
+        "uri": "/user/new",
+        "controller": "NewUserController",
+        "name": "new user"
+    },
+    {
         "method": "GET, POST",
         "uri": "/signin",
         "controller": "SignInController",
         "name": "signin"
     },
     {
-        "method": "GET, POST",
-        "uri": "/[i:id_user]/[i:id_topic]/[a:action]",
+        "method": "GET",
+        "uri": "/signout",
+        "controller": "SignOutController",
+        "name": "signout"
+    },
+    {
+        "method": "GET",
+        "uri": "/[i:id_topic]/[a:action]",
         "controller": "TopicController",
         "name": "topic"
+    },
+    {
+        "method": "POST",
+        "uri": "/[i:id_topic]",
+        "controller": "UpdateTopicController",
+        "name": "update topic"
     }
 ]

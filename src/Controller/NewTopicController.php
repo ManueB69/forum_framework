@@ -16,26 +16,6 @@ use Cda0521Framework\Interfaces\ControllerInterface;
  */
 class NewTopicController implements ControllerInterface
 {
-    /**
-     * Utilisateur connecté
-     */
-    protected User $user;
-    
-    /**
-     * Crée un nouveau contrôleur
-     *
-     * @param integer $id_user Identifiant en base de données du sujet à passer à la vue
-     */
-    public function __construct(int $id_user)
-    {
-        $user = User::findById($id_user);
-        // Si l'utilisateur n'existe pas, renvoie à la page 404
-        if (is_null($user)) {
-            throw new NotFoundException('User #' . $id_user . ' does not exist.');
-        }
-        
-        $this->user = $user;
-    }
     
     /**
      * Examine la requête HTTP et prépare une réponse HTTP adaptée
@@ -65,11 +45,14 @@ class NewTopicController implements ControllerInterface
         $topic = new Topic(null, $title, date('Y-m-d H:i:s'));        
         $topic->save();
         
+        // Récupère l'id de l'utilisateur connecté
+        $id_user=$_SESSION['id_user'];
+        
         // Crée un nouveau message à partir des infos du client
-        $message = new Message(null, $text, date('Y-m-d H:i:s'), $this->user->getId(), $topic->getId()); 
+        $message = new Message(null, $text, date('Y-m-d H:i:s'), $id_user, $topic->getId()); 
         $message->save();
                 
         // Redirige vers la page d'accueil
-        return new RedirectResponse('/');
+        return new RedirectResponse('/'.$topic->getId().'/show');
     }       
 }

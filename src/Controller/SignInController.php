@@ -35,10 +35,10 @@ class SignInController implements ControllerInterface
         if(is_null($user)) {
             throw new Exception('User does not exist');
         }
-        // Si le mot de passe fourni par le client correspond pas à celui du user,
-        // enregistre l'objet user dans la variable globale SESSION et redirige à l'acceuil
+        // Si le mot de passe fourni par le client correspond à celui du user,
+        // enregistre l'objet user dans la variable globale SESSION et redirige à l'accueil
         if($_POST['pwd'] === $user[0]->getPwd()) {
-            $_SESSION['user']=$user;
+            $_SESSION['id_user']=$user[0]->getId();
             return new RedirectResponse('/');
         // sinon renvoie une erreur
         } else {
