@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Model\User;
 use App\View\UserView;
 use Cda0521Framework\Html\AbstractView;

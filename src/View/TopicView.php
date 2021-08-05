@@ -42,6 +42,8 @@ class TopicView extends AbstractView
     {
         $topic = $this->topic;
         $messages = $this->messages;
+        $user=$this->messages[0]->getUser();
+        $topicUser = $user[0]->getUserName();
         // Affiche le contenu de la balise body
         include './templates/topic.php';
     }

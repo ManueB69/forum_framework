@@ -1,10 +1,4 @@
 <!-- home -->
-<?php
-
-use App\Model\Topic;
-
-?>
-
 
 <div class="container">
     <div id="new_topic">

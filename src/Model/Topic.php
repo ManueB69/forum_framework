@@ -2,9 +2,10 @@
 
 namespace App\Model;
 
-use Cda0521Framework\Database\AbstractModel;
+use App\Model\Message;
 use Cda0521Framework\Database\Sql\Table;
 use Cda0521Framework\Database\Sql\Column;
+use Cda0521Framework\Database\AbstractModel;
 use Cda0521Framework\Database\Sql\SqlDatabaseHandler;
 
 #[Table('topic')]
@@ -92,6 +93,16 @@ class Topic extends AbstractModel
         return $this->date;
     }
 
+    /**
+     * Get Messages liés au sujet
+     *
+     * @return  array[Message]
+     */ 
+    public function getMessages() : array
+    {
+        $messages = Message::findWhere('id_topic',$this->id);
+        return $messages;
+    }
 }
 
 ?>

@@ -29,11 +29,7 @@ class TopicController implements ControllerInterface
      * @var string
      */
     private string $action;
-    /**
-     * L'ensemble des messages à passer à la vue
-     * @var array[Message]
-     */
-    private array $messages;
+
     
     /**
      * Crée un nouveau contrôleur
@@ -53,9 +49,6 @@ class TopicController implements ControllerInterface
         $this->topic = $topic;
         
         $this->action = $action;
-        
-        $messages = Message::findWhere('id_topic',$id_topic);
-        $this->messages=$messages;
     }
     
     /**
@@ -66,16 +59,13 @@ class TopicController implements ControllerInterface
      */
     public function invoke(): HttpResponse
     {   
-        $topic=$this->topic;
-        $messages=$this->messages;
-        
         switch($this->action) {
             case 'delete':
                 // Récupère le titre du sujet à supprimer
                 $topic_title = $this->topic->getTitle();
                 
                 // Supprime tous les messages associés au sujet
-                foreach($this->messages as $message) {
+                foreach($this->topic->getMessages() as $message) {
                     $message->delete();
                 }
                 // Supprime le sujet
@@ -85,10 +75,10 @@ class TopicController implements ControllerInterface
                 return new RedirectResponse('/');
 
             case 'edit':
-                return new EditTopicView($topic);
+                return new EditTopicView($this->topic);
                 
             case 'show':
-                return  new TopicView($topic, $messages);
+                return  new TopicView($this->topic, $this->topic->getMessages());
         }       
 
     }

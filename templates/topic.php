@@ -1,15 +1,4 @@
 <!-- topic -->
-<?php
-
-use App\Model\Topic;
-use App\Model\User;
-use App\Model\Message;
-
-$user=$messages[0]->getUser();
-$topicUser = $user[0]->getUserName();
-
-?>
-
 
 <div class="container">
     <div id="topic">
