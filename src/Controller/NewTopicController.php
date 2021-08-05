@@ -31,14 +31,14 @@ class NewTopicController implements ControllerInterface
         }
         $title=$_POST['title'];
         if(strlen($title)>100 || strlen($title)<5 ) {
-            throw new Exception('Title must have minimum 5 and maximum 100 entities : could not create it.');
+            throw new Exception('Title must have minimum 5 and maximum 100 characters : could not create it.');
         }
         if (!isset($_POST['mess_text'])) {
             throw new Exception('Message is empty : could not create it.');
         }
         $text=$_POST['mess_text'];
         if(strlen($text)>3000 || strlen($text) <5 ) {
-            throw new Exception('Message must have minimum 5 and maximum 100 entities : could not create it.');
+            throw new Exception('Message must have minimum 5 and maximum 100 characters : could not create it.');
         }
         
         // Crée un nouveau sujet à partir des infos du client
